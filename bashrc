@@ -5,12 +5,20 @@
 
 # ZAK DEFINED BEGINS
 
-export VISUAL=vim
-export EDITOR="$VISUAL"
 # gsettings set com.ubuntu.update-notifier show-livepatch-status-icon false
 
+# conda config --set auto_activate_base false
+
 # remove/comment "blacklist uvcvideo" to activate camera
+
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+
 alias camera='sudo gedit /etc/modprobe.d/blacklist.conf'
+alias cameraon='sudo modprobe -i uvcvideo'
+alias cameraoff='sudo modprobe -r uvcvideo'
 alias shutdown='shutdown now'
 alias sd='shutdown'
 alias SD='shutdown'
@@ -21,15 +29,26 @@ alias editbash='vi ~/.bashrc'
 alias editvim='vi ~/.vimrc'
 alias sourcebash='source ~/.bashrc'
 
-#Work and Code related
+alias lsa='ls -lrtas'
+
 alias new='deactivate
-    cd
-    clear'
-alias venv='source ~/DjangoProjects/MiniProject/venv/bin/activate
-    cd ~/DjangoProjects/MiniProject/'
+cd
+clear'
+
 alias runserver='./manage.py runserver 192.168.0.101:9000'
 
-alias lsa='ls -lrtas'
+alias venv='source ~/DjangoProjects/MiniProject/venv/bin/activate
+cd ~/DjangoProjects/MiniProject/'
+
+alias prac='cd ~/Documents/python/
+source ~/Documents/python/prac/bin/activate'  # commented out by conda initialize
+
+alias bot='cd ~/Documents/python/bot
+source venv/bin/activate'  # commented out by conda initialize
+
+alias aconda='conda activate'
+alias dconda='conda deactivate'
+alias jnotebook='jupyter notebook'
 # ZAK DEFINED ENDS
 
 
@@ -89,7 +108,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     #PS1='$\u@\h:\w\$ '
     PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;37m\]\w\[\033[00m\]\$'
@@ -148,3 +167,19 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/zak/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/zak/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/zak/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/zak/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
