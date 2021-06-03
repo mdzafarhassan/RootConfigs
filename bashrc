@@ -15,7 +15,6 @@
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-
 alias camera='sudo gedit /etc/modprobe.d/blacklist.conf'
 alias cameraon='sudo modprobe -i uvcvideo'
 alias cameraoff='sudo modprobe -r uvcvideo'
@@ -35,10 +34,23 @@ alias new='deactivate
 cd
 clear'
 
-alias runserver='./manage.py runserver 192.168.0.101:9000'
+alias db='sudo -u postgres psql'
+alias code='code .'
+alias runserver='./manage.py runserver 192.168.1.13:9000'
+alias runlocal='./manage.py runserver 9000'
 
 alias venv='source ~/DjangoProjects/MiniProject/venv/bin/activate
 cd ~/DjangoProjects/MiniProject/'
+alias venvr='venv
+runserver'
+alias venvc='venv
+code'
+alias venvrc='venvc
+runserver'
+alias venvcr='venvrc'
+
+alias jojo='source ~/DjangoProjects/jojo/venv/bin/activate
+cd ~/DjangoProjects/jojo/'
 
 alias prac='cd ~/Documents/python/
 source ~/Documents/python/prac/bin/activate'  # commented out by conda initialize
@@ -46,9 +58,21 @@ source ~/Documents/python/prac/bin/activate'  # commented out by conda initializ
 alias bot='cd ~/Documents/python/bot
 source venv/bin/activate'  # commented out by conda initialize
 
+alias hero='cd ~/DjangoProjects/heroku/MiniProject
+source venv/bin/activate'
+
 alias aconda='conda activate'
 alias dconda='conda deactivate'
 alias jnotebook='jupyter notebook'
+
+
+
+alias ds28='ssh mdzafar@203.122.32.147 -p 8228'
+alias ds29='ssh mdzafar@203.122.32.147 -p 8229'
+
+
+alias aws='cd ~/Documents/aws/keys'
+
 # ZAK DEFINED ENDS
 
 
