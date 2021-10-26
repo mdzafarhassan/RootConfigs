@@ -11,14 +11,14 @@
 
 # remove/comment "blacklist uvcvideo" to activate camera
 
-
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+alias temp='watch -n 10 sensors'
 alias camera='sudo gedit /etc/modprobe.d/blacklist.conf'
 alias cameraon='sudo modprobe -i uvcvideo'
 alias cameraoff='sudo modprobe -r uvcvideo'
-alias shutdown='shutdown now'
+alias shutdown='sudo shutdown now'
 alias sd='shutdown'
 alias SD='shutdown'
 alias update='sudo apt update'
@@ -28,16 +28,19 @@ alias editbash='vi ~/.bashrc'
 alias editvim='vi ~/.vimrc'
 alias sourcebash='source ~/.bashrc'
 
+alias open='browse .'
 alias lsa='ls -lrtas'
 
 alias new='deactivate
 cd
 clear'
 
-alias db='sudo -u postgres psql'
+# alias db='sudo -u postgres psql'
+alias db='mysql -u root -p#welcome123'
 alias code='code .'
-alias runserver='./manage.py runserver 192.168.1.13:9000'
-alias runlocal='./manage.py runserver 9000'
+alias runserver='./manage.py runserver 192.168.1.2:9000'
+alias runlocal='./manage.py runserver 8000'
+alias dshell='./manage.py shell'
 
 alias venv='source ~/DjangoProjects/MiniProject/venv/bin/activate
 cd ~/DjangoProjects/MiniProject/'
@@ -61,17 +64,27 @@ source venv/bin/activate'  # commented out by conda initialize
 alias hero='cd ~/DjangoProjects/heroku/MiniProject
 source venv/bin/activate'
 
+alias aws='cd ~/Documents/aws/keys'
+
+
 alias aconda='conda activate'
 alias dconda='conda deactivate'
 alias jnotebook='jupyter notebook'
 
 
+alias vidu='cd ~/vidu/web_app'
+alias viduapp='cd ~/vidu/mobile_app_android_basic'
+alias vidudev='ssh root@internal.toprankers.com'
+alias livechat='cd ~/vidu/livechat/
+source venv_livechat/bin/activate'
+alias viduchat='livechat'
+alias chatserver='ssh root@52.66.245.225'
+alias rcordova='cordova build browser && cordova run browser --target=firefox'
 
-alias ds28='ssh mdzafar@203.122.32.147 -p 8228'
-alias ds29='ssh mdzafar@203.122.32.147 -p 8229'
 
+alias warewe='cd ~/warewe/main/email_verifier
+source venv_emailv/bin/activate'
 
-alias aws='cd ~/Documents/aws/keys'
 
 # ZAK DEFINED ENDS
 
@@ -117,7 +130,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -132,7 +145,8 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u\[\033[00m\]@\[\033[01;35m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     #PS1='$\u@\h:\w\$ '
     PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;37m\]\w\[\033[00m\]\$'
@@ -191,19 +205,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/zak/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/zak/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/zak/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/zak/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
