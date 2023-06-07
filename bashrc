@@ -14,6 +14,7 @@
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+alias python='python3'
 alias temp='watch -n 10 sensors'
 alias camera='sudo gedit /etc/modprobe.d/blacklist.conf'
 alias cameraon='sudo modprobe -i uvcvideo'
@@ -28,15 +29,46 @@ alias editbash='vi ~/.bashrc'
 alias editvim='vi ~/.vimrc'
 alias sourcebash='source ~/.bashrc'
 
+findFile() {
+  find "$2" -type f -name "$1"
+}
+alias ff='findFile'
+
+# DIRECTORY
+alias ..='cd ..'
+alias ...='cd ../..'
+alias dw='cd /home/user/Downloads'
+alias dc='cd /home/user/Documents'
+
 alias open='browse .'
 alias lsa='ls -lrtas'
+alias lss='ls -a'
+
+# Appinventiv
+export AWS_PROFILE=sandbox
+alias ai='cd /home/user/Appinventiv'
+alias nt='cd /home/user/Appinventiv/nextiles'
+
+#GIT
+alias g='git'
+alias gl='git log'
+alias gst='git status'
+alias gdf='git diff'
+alias gph='git push'
+alias gpl='git pull'
+alias gft='git fecth'
+#alias gco='git checkout'
+#alias gud='git checkout .'
+alias grs='git reset HEAD .'
+alias gss='git stash save'
+alias gsa='git stash apply stash@{0}'
 
 alias new='deactivate
 cd
 clear'
 
 # alias db='sudo -u postgres psql'
-alias db='mysql -u root -p#welcome123'
+#alias db='mysql -u root -p#welcome123'
 alias code='code .'
 alias runserver='./manage.py runserver 192.168.1.2:9000'
 alias runlocal='./manage.py runserver 8000'
@@ -64,14 +96,14 @@ source venv/bin/activate'  # commented out by conda initialize
 alias hero='cd ~/DjangoProjects/heroku/MiniProject
 source venv/bin/activate'
 
-alias aws='cd ~/Documents/aws/keys'
+#alias aws='cd ~/Documents/aws/keys'
 
 
 alias aconda='conda activate'
 alias dconda='conda deactivate'
 alias jnotebook='jupyter notebook'
 
-
+# Classplus/VIDU
 alias vidu='cd ~/vidu/web_app'
 alias viduapp='cd ~/vidu/mobile_app_android_basic'
 alias vidudev='ssh root@internal.toprankers.com'
@@ -81,9 +113,6 @@ alias viduchat='livechat'
 alias chatserver='ssh root@52.66.245.225'
 alias rcordova='cordova build browser && cordova run browser --target=firefox'
 
-
-alias warewe='cd ~/warewe/main/email_verifier
-source venv_emailv/bin/activate'
 
 
 # ZAK DEFINED ENDS
@@ -143,10 +172,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+parse_git_branch() {
+ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (*\1)/'
+}
+
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u\[\033[00m\]@\[\033[01;35m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u\[\033[00m\]@\[\033[01;35m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;32m\]$(parse_git_branch)\[\033[00m\]\$ '
 else
     #PS1='$\u@\h:\w\$ '
     PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;37m\]\w\[\033[00m\]\$'
